@@ -13,10 +13,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.green.service.UserDetailService;
 
 import lombok.RequiredArgsConstructor;
+
+
 // Spring security 버전에 따라서 6.10  기준 코딩
 // 버전이 낮으면 함수가 다 deplicated 된다
-@RequiredArgsConstructor
 @Configuration
+@RequiredArgsConstructor
 public class WebSecurityConfig {
 	private final UserDetailService userService;
 
@@ -73,12 +75,15 @@ public class WebSecurityConfig {
         DaoAuthenticationProvider  authProvider = new DaoAuthenticationProvider();
         
         authProvider.setUserDetailsService(userService); 
-	    
+	       // private final UserDetailService userService; 
         authProvider.setPasswordEncoder(bCryptPasswordEncoder);  // 비밀번호 암호화하기 위한 인코더설정 
         return new ProviderManager(authProvider);
     }
 
     // 8) 패스워드 인코더로 사용할 빈 등록
+    // Crypt : 암호화 : 비밀번호를 암호화
+    // @Bean: 스프링부품으로 등록
+    
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -86,4 +91,4 @@ public class WebSecurityConfig {
 }
 
 
-}
+
