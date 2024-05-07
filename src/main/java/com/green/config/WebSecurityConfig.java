@@ -51,7 +51,7 @@ public class WebSecurityConfig {
 		.formLogin((formLogin) ->
 				formLogin
 						.loginPage("/login")		     // 로그인 페이지 경로				
-						.defaultSuccessUrl("/articles")  // 로그인 성공시 경로
+						.defaultSuccessUrl("/")  // 로그인 성공시 경로: index.html
 		) // 로그인처리
 		.logout((logout) ->
 				logout.logoutSuccessUrl("/login")       // 로그아웃성공시 경로
